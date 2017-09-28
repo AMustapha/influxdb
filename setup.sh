@@ -1,5 +1,6 @@
 git clone https://github.com/AurelienGalicher/influxdb.git
 cd influxdb
+mkdir data
 openssl genrsa -out etc/server.key 1024
 touch etc/openssl.cnf
 cat >> etc/openssl.cnf <<EOF
