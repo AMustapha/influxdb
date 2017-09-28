@@ -3,17 +3,19 @@ version: '3.1'
 services:
   nginx:
     image: nginx
+    #network_mode: bridge
     ports: ['3000:3000', '8086:8086']
     restart: always
     volumes:
-      - ./etc/nginx.conf:/etc/nginx/nginx.conf:ro
-      - /etc/filesrv.rob86.net.cert.pem:/etc/ssl/cert.pem:ro
-      - /etc/filesrv.rob86.net.key.pem:/etc/ssl/key.pem:ro
+      - /Users/galicher/Documents/TOTAL/opentsdb/influxdb/etc/nginx.conf:/etc/nginx/nginx.conf:ro
+      - /Users/galicher/Documents/TOTAL/opentsdb/influxdb/etc/nginx.crt.pem:/etc/ssl/cert.pem:ro
+      - /Users/galicher/Documents/TOTAL/opentsdb/influxdb/etc/nginx.key.pem:/etc/ssl/key.pem:ro
 
   influxdb:
     container_name: influxdb
+    #network_mode: bridge
     env_file:
-     - ./influxdb.env
+     - /Users/galicher/Documents/TOTAL/opentsdb/influxdb/influxdb.env
     environment:
       - INFLUXDB_DATA_QUERY_LOG_ENABLED=false
       - INFLUXDB_HTTP_LOG_ENABLED=false
@@ -23,11 +25,8 @@ services:
 
   grafana:
     container_name: grafana
+    #network_mode: bridge
     #entrypoint: 'bash -c "cp /run/secrets/grafana /etc/grafana/grafana.ini && . run.sh"'  # TODO: Use secrets uid/mode
-    
     image: grafana/grafana
     restart: always
     volumes: ['./grafana/data:/var/lib/grafana']
-
-
-  
