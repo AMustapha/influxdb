@@ -22,7 +22,7 @@ services:
 
   grafana:
     container_name: grafana
-    entrypoint: 'bash -c "cp /run/secrets/grafana /etc/grafana/grafana.ini && . run.sh"'  # TODO: Use secrets uid/mode
+    #entrypoint: 'bash -c "cp /run/secrets/grafana /etc/grafana/grafana.ini && . run.sh"'  # TODO: Use secrets uid/mode
     environment:
       - GF_SECURITY_DISABLE_GRAVATAR=true
       - GF_SERVER_DOMAIN=filesrv.rob86.net
@@ -36,19 +36,7 @@ services:
     secrets: [grafana]
     volumes: ['/storage/Local/grafana:/var/lib/grafana']
 
-  cronitor:
-    build: ./cronitor
-    container_name: cronitor
-    restart: always
-    secrets: [cronitor]
-
-  nmc:
-    build: ./nmc
-    container_name: nmc
-    restart: always
-    secrets: [nmc]
-
 secrets:
-  cronitor: {file: .secrets/cronitor}
-  grafana: {file: .secrets/grafana.ini}
-  nmc: {file: .secrets/nmc}
+  influxdb: {file: .secrets/influxdb}
+  grafana: {file: .secrets/grafana}
+  
