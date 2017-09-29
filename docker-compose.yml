@@ -18,7 +18,7 @@ services:
      - ./influxdb.env
     environment:
       - INFLUXDB_DATA_QUERY_LOG_ENABLED=false
-      - INFLUXDB_HTTP_LOG_ENABLED=false
+      - INFLUXDB_HTTP_LOG_ENABLED=true
     image: influxdb
     restart: always
     volumes: ['./data/influxdb:/var/lib/influxdb']
