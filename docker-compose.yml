@@ -15,7 +15,7 @@ services:
     container_name: influxdb
     #network_mode: bridge
     env_file:
-     - /Users/galicher/Documents/TOTAL/opentsdb/influxdb/influxdb.env
+     - ./influxdb.env
     environment:
       - INFLUXDB_DATA_QUERY_LOG_ENABLED=false
       - INFLUXDB_HTTP_LOG_ENABLED=false
